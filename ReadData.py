@@ -23,8 +23,12 @@ def getDF(path):
   for d in parse(path):
     df[i] = d
     i += 1
-    df_1 = pd.DataFrame.from_dict(df, orient='index')
-    print(df_1.columns)
+    df_row = pd.DataFrame.from_dict(df, orient='index')
+    if i<=10:
+      print(df_row.columns)
+      df_row.to_csv("outdata_10.cvs",header=1,index=1)
+    else:
+      os.exit("program is closed")
   return pd.DataFrame.from_dict(df, orient='index')
 
 
