@@ -35,12 +35,19 @@ def getDF(path):
         df[i] = d
         i += 1
         df_row = pd.DataFrame.from_dict(df, orient='index')
-        # The first 10 data save to output_10.cvs
+        # Collect the first 10 data and save to output_10.cvs
+        # In general, we will collect the short version of the data set from the large data set
+        # before we perform this program for the the large data set.
         if i <= 10:
-            print(df_row)
+            # print(df_row) # print df_row
             df_row.to_csv("outdata_10.cvs", header=1, index=1)
         else:
-            sys.exit("program is closed")
+            # operate the data set to know the format of data set.
+            print(df_row.iloc[1, :]) # print the data of the first row.
+            print(df_row.iloc[:, -1]) # print the data od the last column.
+            print(df_row.columns) # print the Index
+            print(df_row.loc[:, 'reviewTime']) # print data of reviewTime after we know the index.
+            sys.exit("program is closed") # stop the program
     return pd.DataFrame.from_dict(df, orient='index')
 
 #--------------------------
@@ -48,3 +55,4 @@ def getDF(path):
 #--------------------------
 if __name__ == '__main__':
     df = getDF(path)
+
